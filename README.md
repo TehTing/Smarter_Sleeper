@@ -13,7 +13,7 @@
 * 1.5V電池 * 4
 * 4節電池座
 
-## MAX7219
+## MAX7219前置
 #### 一、連接硬體裝置(單個MAX7219)
 ![.](/.png "MAX7219_pin接法")
 #### 二、安裝SPI
@@ -73,9 +73,25 @@ device = max7219(serial, cascaded=1, block_orientation=block_orientation,
 
 3. 可以正常顯示的話Max7219的前置作業就全部完成啦！
 
-#### 五、Smarter Sleeper程式撰寫
+## 連接音響
+#### 一、前置工作
+1. 將檔案放入這個資料夾/home/pi/Music
+2. 更新安裝套件
+sudo apt-get update
+sudo apt-get install mpg321
+3. 執行此套件
+```
+import os 
+os.system('mpg321 /home/pi/Music/你的檔名 &')
+# 例如：os.system('mpg321 /home/pi/Music/mymusic.mp3 &')
+```
+## Smarter Sleeper程式撰寫
+**還沒完成**
 ```python
 import time
+import os
+import pygame
+from time import sleep
 from datetime import datetime
 from luma.led_matrix.device import max7219
 from luma.core.interface.serial import spi
@@ -97,23 +113,10 @@ def time(mode):
 
         with canvas(device) as draw:
             text(draw, (1, 1), current, fill="white", font=proportional(TINY_FONT))
-       
 def main():
     mode = 1
     time(mode)   
 
 if __name__ == "__main__":
     main()
-```
-
-## 連接音響
-#### 一、前置工作
-1. 將檔案放入這個資料夾/home/pi/Music
-2. 更新安裝套件
-sudo apt-get update
-sudo apt-get install mpg321
-3. 執行此套件
-```
-import os 
-os.system('mpg321 /home/pi/Music你的檔名 &')
 ```
