@@ -1,4 +1,18 @@
 # Smarter Sleeper
+## 專案介紹
+打開手機鬧鐘的App，裡面是一整排滑不完的鬧鐘清單嗎？即便設了很多鬧鐘，關掉鬧鐘繼續睡的壞習慣還是讓你不斷遲到嗎？嘗試使用防貪睡的App，在完成關掉鬧鐘的任務後坐在床上，溫暖的床又讓你沉淪了嗎？  
+  
+  Smart Sleeper提供三段強度的喚醒方式，讓你戒掉貪睡的壞習慣：
+  
+#### 使用元件
+* Raspberry Pi 3
+* Raspberry Pi NOIR/CS
+* MAX7219 矩陣顯示模組 * 2
+* 藍芽音響與音源線
+* 杜邦線數條
+* 1.5V電池 * 4
+* 4節電池座
+
 ## MAX7219
 #### 一、連接硬體裝置(單個MAX7219)
 ![.](/.png "MAX7219_pin接法")
@@ -90,4 +104,16 @@ def main():
 
 if __name__ == "__main__":
     main()
+```
+
+## 連接音響
+#### 一、前置工作
+1. 將檔案放入這個資料夾/home/pi/Music
+2. 更新安裝套件
+sudo apt-get update
+sudo apt-get install mpg321
+3. 執行此套件
+```
+import os 
+os.system('mpg321 /home/pi/Music你的檔名 &')
 ```
