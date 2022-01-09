@@ -17,7 +17,9 @@ print("Created device")
 
 def clock(mode, awake):
     try:
-      current = datetime.now().strftime("%M%S")
+        current = datetime.now().strftime("%H%M")
+        # 測試時可以用下面這行，以秒計算比較好看出變化
+        # current = datetime.now().strftime("%M%S")
         with canvas(device) as draw:
             text(draw, (1, 1), current, fill="white", font=proportional(TINY_FONT))
         if(current == awake):
