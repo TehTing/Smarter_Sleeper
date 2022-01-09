@@ -1,3 +1,5 @@
+# 參考自：https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/
+
 import main_try
 import os
 import sys
