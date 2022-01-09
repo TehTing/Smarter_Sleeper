@@ -124,8 +124,8 @@ if __name__ == "__main__":
 ```
 
 ## Line bot前置
-1. 創建LineBot帳號，請見此[參考頁面](https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/)建立 LINE messaging API的部分進行操作  
-2. 安裝套件
+#### 一、 創建LineBot帳號，請見此[參考頁面](https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/)建立 LINE messaging API的部分進行操作  
+#### 二、 安裝套件
 ```
 # ngrok伺服器
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip --no-check-certificate 
@@ -134,7 +134,7 @@ unzip ngrok-stable-linux-arm.zip
 # linebot套件
 pip install line-bot-sdk
 ```
-3. 設定webhook參數
+#### 三、 設定webhook參數
 ```
 # 先開啟第一個terminal
 $ ./ngrok http 8000
@@ -146,13 +146,15 @@ $ ./ngrok http 8000
 接著按下Update並確保Use webhook是開啟的狀態  
 ![.](/images/webhook_2.jpg "ngrok執行畫面" )   
 **注意：每次重開ngrok都要執行一次修改參數的動作，因此盡量不要一直開開關關，不然一直改參數你會很累。**  
-4. 設定linebot_test.py參數
+#### 四、 設定linebot_test.py參數
 linebot_test.py中將`channel_secret=''`和`'channel_access_token''`的內容補上  
 > channel_secret的資料在line developers的Basic settings頁  
 channel_access_token的資料在line developers的Messaging API頁
-以上內容參考自：https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/
 
-5. 測試
+
+#### 五、 測試
 * 用line掃描Messaging API頁的QRcode將Smarter Sleeper加入好友進行聊天
 * 在raspberry Pi 執行 linebot_test.py
 * 在聊天室隨便打字，Smarter Sleeper會像小三生一樣重複你說的話
+
+以上內容參考自：https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/
