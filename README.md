@@ -146,8 +146,13 @@ $ ./ngrok http 8000
 接著按下Update並確保Use webhook是開啟的狀態  
 ![.](/images/webhook_2.jpg "ngrok執行畫面" )   
 **注意：每次重開ngrok都要執行一次修改參數的動作，因此盡量不要一直開開關關，不然一直改參數你會很累。**  
-3. 設定linebot_test.py參數
+4. 設定linebot_test.py參數
 linebot_test.py中將`channel_secret=''`和`'channel_access_token''`的內容補上  
 > channel_secret的資料在line developers的Basic settings頁  
 channel_access_token的資料在line developers的Messaging API頁
 以上內容參考自：https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/
+
+5. 測試
+* 用line掃描Messaging API頁的QRcode將Smarter Sleeper加入好友進行聊天
+* 在raspberry Pi 執行 linebot_test.py
+* 在聊天室隨便打字，Smarter Sleeper會像小三生一樣重複你說的話
