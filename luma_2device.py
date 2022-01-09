@@ -1,3 +1,5 @@
+# 此程式用於測試兩個max7219的串聯是否成功
+
 import time
 from datetime import datetime
 from luma.led_matrix.device import max7219
