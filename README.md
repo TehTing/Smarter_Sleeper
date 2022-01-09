@@ -94,42 +94,6 @@ os.system('mpg321 /home/pi/Music/你的檔名 &')
 # 例如：os.system('mpg321 /home/pi/Music/mymusic.mp3 &')
 ```
   
-## Smarter Sleeper程式撰寫
-**還沒完成**
-```python
-import time
-import os
-import pygame
-from time import sleep
-from datetime import datetime
-from luma.led_matrix.device import max7219
-from luma.core.interface.serial import spi
-from luma.core.render import canvas
-from luma.core.legacy import text, show_message
-from luma.core.legacy.font import proportional, CP437_FONT, TINY_FONT, SINCLAIR_FONT, LCD_FONT
-
-serial = spi(port=0, device=0)
-device = max7219(serial, cascaded=2, block_orientation=0, rotate=0)
-print("Created device")
-
-def time(mode):
-    while(mode):
-        now = datetime.now()
-	current=datetime.now().strftime('%M')+datetime.now().strftime('%S')	# 測試的時候可以用這行
-# (H=Hour, M=Minute S=Second)
-        current=datetime.now().strftime('%H')+datetime.now().strftime('%M')
-
-
-        with canvas(device) as draw:
-            text(draw, (1, 1), current, fill="white", font=proportional(TINY_FONT))
-def main():
-    mode = 1
-    time(mode)   
-
-if __name__ == "__main__":
-    main()
-```
-  
 ## Line bot前置
 #### 一、 創建LineBot帳號，請見此[參考頁面](https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/)建立 LINE messaging API的部分進行操作  
   
