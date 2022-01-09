@@ -140,11 +140,11 @@ pip install line-bot-sdk
 $ ./ngrok http 8000
 ```
 將htpps開頭的網址複製起來(下圖框起來的那欄)  
-![.](/images/webhook_1.jpg "ngrok執行畫面")  
+![.](/images/linebot_1.jpg "ngrok執行畫面")  
 **注意：不要關閉此terminal，執行linebot時我們需要ngrok保持在開啟的狀態**  
 來到line developers網頁，找到Messaging API頁的webhook，將剛才複製的網址貼上，並在結尾加上`/callback`。
 接著按下Update並確保Use webhook是開啟的狀態  
-![.](/images/webhook_2.jpg "ngrok執行畫面" )   
+![.](/images/linebot_2.jpg "ngrok執行畫面" )   
 **注意：每次重開ngrok都要執行一次修改參數的動作，因此盡量不要一直開開關關，不然一直改參數你會很累。**  
 #### 四、 設定linebot_test.py參數
 linebot_test.py中將`channel_secret=''`和`'channel_access_token''`的內容補上  
@@ -157,7 +157,8 @@ channel_access_token的資料在line developers的Messaging API頁
 2. 在raspberry Pi 執行 linebot_test.py
 3. 在聊天室隨便打字，Smarter Sleeper會像小三生一樣重複你說的話
 
-如果測試發現每次Smarter Sleeper回話前都會多一串話：
+如果測試發現每次Smarter Sleeper回話前都會多一串話，像這樣：  
+![.](/images/linebot_3.jpg "像這樣")  
 > 1. 到Messaging API settings頁
 > 2. 找到LINE Official Account features中的Auto-reply messages，點下Edit後跳轉畫面
 > 3. 把進階設定中的自動回覆訊息停用。
