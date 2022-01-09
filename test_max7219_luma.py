@@ -1,4 +1,5 @@
 # 用luma套件測試設備max7219是否正常運作
+# 參考自 luma 套件提供的 matrix_demo.py
 
 from luma.led_matrix.device import max7219
 from luma.core.interface.serial import spi
