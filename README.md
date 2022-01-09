@@ -12,10 +12,11 @@
 * 杜邦線數條
 * 1.5V電池 * 4
 * 4節電池座
-
+  
 ## MAX7219前置
 #### 一、連接硬體裝置(單個MAX7219)
-![.](/images/max7219_pin_1.png "MAX7219_pin接法")
+![.](/images/max7219_pin_1.png "MAX7219_pin接法")  
+  
 #### 二、安裝SPI
 檢查是否有東西
 ```
@@ -27,8 +28,8 @@ $ sudo raspi-config
 ![.](/images/max7219_api_1.jpg "api安裝")  
 ![.](/images/max7219_api_2.jpg "api安裝")  
 ![.](/images/max7219_api_3.jpg "api安裝")  
-參考自：https://luma-led-matrix.readthedocs.io/en/latest/install.html
-
+連接硬體、安裝SPI參考自：https://luma-led-matrix.readthedocs.io/en/latest/install.html  
+  
 #### 三、下載安裝套件
 控制MAX7219常見的套件有兩種：`max7219`和`luma.led_matrix`。
 但我建議使用`luma.led_matrix`，因為`max7219`似乎改過文件，目前網路上找到的範例執行後都會出現`ModuleNotFoundError`，`luma.led_matrix`在操作上會比較順利，所以以下範例也是用`luma.led_matrix`套件來撰寫。
@@ -50,29 +51,25 @@ $ cd luma.led_matrix
 # 執行測試檔案
 $ python3 examples/matrix_demo.py -h
 ```
-參考自：https://www.twblogs.net/a/5b8d06102b71771883396f6d
-
->若測試檔案無法打開，可直接使用下面程式碼測試：
->>```
-晚點放
-
-參考影片(裡面有對這段程式碼的簡單介紹)：https://www.youtube.com/watch?v=sB79wyqsbAo&ab_channel=%E5%90%B3%E7%B4%B9%E8%A3%B3
-
-
+下載安裝套件參考自：https://www.twblogs.net/a/5b8d06102b71771883396f6d  
+  
+>若測試檔案無法打開，可直接使用此github中的`max7219_test_luma.py`進行測試
+參考影片(裡面有對這段程式碼的簡單介紹)：https://www.youtube.com/watch?v=sB79wyqsbAo&ab_channel=%E5%90%B3%E7%B4%B9%E8%A3%B3  
+  
 #### 四、串接兩個Max7219
 個別測試好Max7219可以正常使用後，接著就可以來串接兩個Max7219。
-
+  
 1. 連接設備  
 ![.](/images/max7219_pin_2.png "接腳")  
 ![.](/images/max7219_pin_3.png "接腳")  
-參考自：https://swf.com.tw/?p=738
-
+  
 2. 打開剛剛使用的matrix_demo.py檔案，將第21行程式碼
 `device = max7219(serial, cascaded=1, block_orientation=block_orientation,`
 中的`cascaded=1`改為`cascaded=2`，cascaded是代表有幾個裝置串接的意思
-
+  
 3. 可以正常顯示的話Max7219的前置作業就全部完成啦！
-
+串接兩個Max7219參考自：https://swf.com.tw/?p=738
+  
 ## 連接音響
 #### 一、前置工作
 1. 將檔案放入這個資料夾 /home/pi/Music
@@ -87,6 +84,7 @@ import os
 os.system('mpg321 /home/pi/Music/你的檔名 &')
 # 例如：os.system('mpg321 /home/pi/Music/mymusic.mp3 &')
 ```
+  
 ## Smarter Sleeper程式撰寫
 **還沒完成**
 ```python
@@ -122,9 +120,10 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-
+  
 ## Line bot前置
 #### 一、 創建LineBot帳號，請見此[參考頁面](https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/)建立 LINE messaging API的部分進行操作  
+  
 #### 二、 安裝套件
 ```
 # ngrok伺服器
@@ -134,6 +133,7 @@ unzip ngrok-stable-linux-arm.zip
 # linebot套件
 pip install line-bot-sdk
 ```
+  
 #### 三、 設定webhook參數
 ```
 # 先開啟第一個terminal
@@ -146,23 +146,20 @@ $ ./ngrok http 8000
 接著按下Update並確保Use webhook是開啟的狀態  
 ![.](/images/linebot_2.jpg "ngrok執行畫面" )   
 **注意：每次重開ngrok都要執行一次修改參數的動作，因此盡量不要一直開開關關，不然一直改參數你會很累。**  
+  
 #### 四、 設定linebot_test.py參數
 linebot_test.py中將`channel_secret=''`和`'channel_access_token''`的內容補上  
 > channel_secret的資料在line developers的Basic settings頁  
 channel_access_token的資料在line developers的Messaging API頁
-
-
+  
 #### 五、 測試
 1. 用line掃描Messaging API頁的QRcode將Smarter Sleeper加入好友進行聊天
 2. 在raspberry Pi 執行 linebot_test.py
 3. 在聊天室隨便打字，Smarter Sleeper會像小三生一樣重複你說的話
-
-如果測試發現每次Smarter Sleeper回話前都會多一串話，像這樣：  
-![.](/images/linebot_3.jpg "像這樣")  
+  
+>如果測試發現每次Smarter Sleeper回話前都會多一串話，像這樣：  
+>![.](/images/linebot_3.jpg "像這樣")  
 > 1. 到Messaging API settings頁
 > 2. 找到LINE Official Account features中的Auto-reply messages，點下Edit後跳轉畫面
 > 3. 把進階設定中的自動回覆訊息停用。
-
-
-
-以上內容參考自：https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/
+Line bot前置參考自：https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/
