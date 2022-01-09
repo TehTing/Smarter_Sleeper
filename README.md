@@ -15,7 +15,7 @@
 
 ## MAX7219前置
 #### 一、連接硬體裝置(單個MAX7219)
-![.](/.png "MAX7219_pin接法")
+![.](/images/max7219_pin_1.png "MAX7219_pin接法")
 #### 二、安裝SPI
 檢查是否有東西
 ```
@@ -24,9 +24,9 @@ $ ls -l /dev/spi*
 如果沒有 -> 進行安裝
 $ sudo raspi-config
 ```
-![.](/.png "api安裝")  
-![.](/.png "api安裝")  
-![.](/.png "api安裝")  
+![.](/images/max7219_api_1.jpg "api安裝")  
+![.](/images/max7219_api_2.jpg "api安裝")  
+![.](/images/max7219_api_3.jpg "api安裝")  
 參考自：https://luma-led-matrix.readthedocs.io/en/latest/install.html
 
 #### 三、下載安裝套件
@@ -63,8 +63,8 @@ $ python3 examples/matrix_demo.py -h
 個別測試好Max7219可以正常使用後，接著就可以來串接兩個Max7219。
 
 1. 連接設備  
-![.](/.png "接腳")  
-![.](/.png "接腳")  
+![.](/images/max7219_pin_2.png "接腳")  
+![.](/images/max7219_pin_3.png "接腳")  
 參考自：https://swf.com.tw/?p=738
 
 2. 打開剛剛使用的matrix_demo.py檔案，將第21行程式碼
