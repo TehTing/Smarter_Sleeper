@@ -1,6 +1,5 @@
-# max7219+player
-# test
-#import main_test
+# 操控時間顯示面板的程式
+
 import time
 import os
 import pygame
