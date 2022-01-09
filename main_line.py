@@ -1,6 +1,6 @@
 # 參考自：https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/
 
-import main_try
+import main_clock
 import os
 import sys
 from argparse import ArgumentParser
@@ -20,7 +20,6 @@ app = Flask(__name__)
 
 path=sys.argv[0]
 print(path)
-led_status = ""
 
 #要改channel_secret和channel_access_token
 channel_secret = '7272a33c0a0c5e35dfe4db9e524c2043'
@@ -63,16 +62,17 @@ def control_led():
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
     global led_status
+    led_status="0000"
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text)
     )
     print (event.message.text)
 
-    if (event.message.text != led_status):
+    if (led_status != event.message.text):
         led_status = event.message.text # set alert time
-        main_try.change(led_status)
-    print ("led狀態:" + led_status)
+        main_clock.change(led_status)
+    print ("led??:" + led_status)
 
 if __name__ == "__main__":
     arg_parser = ArgumentParser(
@@ -82,4 +82,3 @@ if __name__ == "__main__":
     arg_parser.add_argument('-d', '--debug', default=False, help='debug')
     options = arg_parser.parse_args()
     app.run(debug=options.debug, port=options.port)
-
