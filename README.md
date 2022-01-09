@@ -153,8 +153,15 @@ channel_access_token的資料在line developers的Messaging API頁
 
 
 #### 五、 測試
-* 用line掃描Messaging API頁的QRcode將Smarter Sleeper加入好友進行聊天
-* 在raspberry Pi 執行 linebot_test.py
-* 在聊天室隨便打字，Smarter Sleeper會像小三生一樣重複你說的話
+1. 用line掃描Messaging API頁的QRcode將Smarter Sleeper加入好友進行聊天
+2. 在raspberry Pi 執行 linebot_test.py
+3. 在聊天室隨便打字，Smarter Sleeper會像小三生一樣重複你說的話
+
+如果測試發現每次Smarter Sleeper回話前都會多一串話：
+> 1. 到Messaging API settings頁
+> 2. 找到LINE Official Account features中的Auto-reply messages，點下Edit後跳轉畫面
+> 3. 把進階設定中的自動回覆訊息停用。
+
+
 
 以上內容參考自：https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/
