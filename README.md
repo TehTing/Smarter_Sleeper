@@ -62,7 +62,7 @@ $ python3 examples/matrix_demo.py -h
 ```
 下載安裝套件參考自：https://www.twblogs.net/a/5b8d06102b71771883396f6d  
   
->若測試檔案無法打開，可直接使用此github中的`max7219_test_luma.py`進行測試
+>若測試檔案無法打開，可直接使用此github中的`test_max7219_luma.py`進行測試
 參考影片(裡面有對這段程式碼的簡單介紹)：https://www.youtube.com/watch?v=sB79wyqsbAo&ab_channel=%E5%90%B3%E7%B4%B9%E8%A3%B3  
   
 #### 四、串接兩個Max7219
