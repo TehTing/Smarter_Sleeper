@@ -30,8 +30,8 @@ $ sudo raspi-config
 參考自：https://luma-led-matrix.readthedocs.io/en/latest/install.html
 
 #### 三、下載安裝套件
-控制MAX7219常見的套件有兩種：max7219和luma.led_matrix。
-但我建議使用luma.led_matrix，因為max7219似乎改過文件，目前網路上找到的範例執行後都會出現ModuleNotFoundError，luma.led_matrix在操作上會比較順利，所以以下範例也是用luma.led_matrix套件來撰寫。
+控制MAX7219常見的套件有兩種：`max7219`和`luma.led_matrix`。
+但我建議使用`luma.led_matrix`，因為`max7219`似乎改過文件，目前網路上找到的範例執行後都會出現`ModuleNotFoundError`，`luma.led_matrix`在操作上會比較順利，所以以下範例也是用`luma.led_matrix`套件來撰寫。
 
 ```
 # 更新套件
@@ -68,17 +68,19 @@ $ python3 examples/matrix_demo.py -h
 參考自：https://swf.com.tw/?p=738
 
 2. 打開剛剛使用的matrix_demo.py檔案，將第21行程式碼
-device = max7219(serial, cascaded=1, block_orientation=block_orientation,
-中的cascaded=1改為cascaded=2，cascaded是代表有幾個裝置串接的意思
+`device = max7219(serial, cascaded=1, block_orientation=block_orientation,`
+中的`cascaded=1`改為`cascaded=2`，cascaded是代表有幾個裝置串接的意思
 
 3. 可以正常顯示的話Max7219的前置作業就全部完成啦！
 
 ## 連接音響
 #### 一、前置工作
-1. 將檔案放入這個資料夾/home/pi/Music
+1. 將檔案放入這個資料夾 /home/pi/Music
 2. 更新安裝套件
+```
 sudo apt-get update
 sudo apt-get install mpg321
+```
 3. 執行此套件
 ```
 import os 
