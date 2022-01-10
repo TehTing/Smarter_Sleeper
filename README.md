@@ -14,12 +14,14 @@ Smarter Sleeper是一個可以使用line bot進行操控的鬧鐘
   
 #### 使用元件
 * Raspberry Pi 3
-* Raspberry Pi NOIR/CS
+* Raspberry Pi 電源線
 * MAX7219 矩陣顯示模組 * 2
 * 藍芽音響與音源線
 * 杜邦線數條
 * 1.5V電池 * 4
 * 4節電池座
+* 按鈕
+* 10K電阻
   
 #### 檔案說明
 * 檔名為`test_*`的程式碼是用來測試設備是否正常
