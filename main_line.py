@@ -1,6 +1,4 @@
-# 參考自：https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/
-
-import main_clock
+import try_alarm
 import os
 import sys
 from argparse import ArgumentParser
@@ -33,12 +31,13 @@ if channel_access_token is None:
 
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
-
+text = "Enter the action you want to do:\nturn on & set alarm time\nformate(2359)\nturn off"
+# line_bot_api.reply_message(event.reply_token, TextSendMessage(text = text))
+#line_bot_api.push_message('to', TextSendMessage(text=text))
 
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
-    print("cb")
     signature = request.headers['X-Line-Signature']
 
     # get request body as text
@@ -52,29 +51,46 @@ def callback():
         abort(400)
 
     return 'OK'
-
+'''
 @app.route("/")
 def control_led():
     print("led")
     global led_status
     return led_status
+'''
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
-    global led_status
-    led_status="0000"
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text)
-    )
-    print (event.message.text)
+    
+    if event.message.text == 'turn off':
+        #try:
+        try_alarm.off()
+        text = "The alarm sucessfully turned off."
+        '''
+        except Error:
+            text = "Eoor: fail to turn off"
+        finally:
+        '''
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = text))
+    else:
+        global set_alarm
+        text="set alarm"+ event.message.text
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = text))
+        try_alarm.change(event.message.text)
 
-    if (led_status != event.message.text):
-        led_status = event.message.text # set alert time
-        main_clock.change(led_status)
-    print ("led??:" + led_status)
+    print (event.message.text)
+    '''
+    if event.message.text == 'set time':
+        text = "please enter the time you want to set\nformate(2359)"
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = text))
+    '''
+    # led_status = event.message.text # set alert time
+        # main_clock.change(led_status)
+    # print ("led狀態:" + led_status)
 
 if __name__ == "__main__":
+    global set_alarm
+    set_alarm="0000"
     arg_parser = ArgumentParser(
         usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
     )
@@ -82,3 +98,4 @@ if __name__ == "__main__":
     arg_parser.add_argument('-d', '--debug', default=False, help='debug')
     options = arg_parser.parse_args()
     app.run(debug=options.debug, port=options.port)
+
