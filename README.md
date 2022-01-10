@@ -3,6 +3,7 @@
 * 專案介紹
 * Max7219 前置
 * 連接音響
+* 按鈕前置
 * line bot 前置
 ## 專案介紹
 Smarter Sleeper是一個可以使用line bot進行操控的鬧鐘
@@ -82,17 +83,23 @@ $ python3 examples/matrix_demo.py -h
 ## 連接音響
 #### 一、前置工作
 1. 將檔案放入這個資料夾 /home/pi/Music
-2. 更新安裝套件
+2. 安裝套件
 ```
-sudo apt-get update
-sudo apt-get install mpg321
+sudo pip3 install python-vlc
 ```
-3. 執行此套件
-```
-import os 
-os.system('mpg321 /home/pi/Music/你的檔名 &')
-# 例如：os.system('mpg321 /home/pi/Music/mymusic.mp3 &')
-```
+3. 跑跑看  
+> **本來使用此方案，但後來無法使用此方法做成鬧鐘，所以使用另一個方案**
+> 2. 更新安裝套件
+> ```
+> sudo apt-get update
+> sudo apt-get install mpg321
+> ```
+> 3. 執行此套件
+> ```
+> import os 
+> os.system('mpg321 /home/pi/Music/你的檔名 &')
+> # 例如：os.system('mpg321 /home/pi/Music/mymusic.mp3 &')
+> ```
   
 ## 按鈕前置
 #### 接引腳
@@ -148,3 +155,24 @@ channel_access_token的資料在line developers的Messaging API頁
 > 2. 找到LINE Official Account features中的Auto-reply messages，點下Edit後跳轉畫面
 > 3. 把進階設定中的自動回覆訊息停用。  
 Line bot前置參考自：https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/
+
+## 程式碼實作
+#### 鬧鐘限時
+響鈴後開始計算時間，程式中會呼叫鬧鐘操控的程式碼來進行響鈴。
+參考程式碼：test_time_limit.py  
+參考自：https://www.itread01.com/content/1548280081.html  
+#### 按下按鈕停止響鈴
+修改後程式碼：try_another_play.py  
+參考自：https://raspberrydiy.com/raspberry-pi-alarm-clock/  
+#### 鬧鐘操控
+* on() -> 開啟鬧鐘，若時間到澤開始響鈴
+* off() -> 關閉鬧鐘(直到下次呼喚on()前都不會作用)
+* change() -> 設定鬧鐘時間  
+程式碼：try_alarm.py  
+#### 時間顯示
+程式碼：try_clock.py  
+顯示現在時間  
+#### Line Bot操控
+使用Line Bot遠程設定鬧鐘時間、關閉鬧鐘  
+修改後程式碼：main_line.py  
+參考自https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/
