@@ -97,10 +97,10 @@ os.system('mpg321 /home/pi/Music/你的檔名 &')
 ## 按鈕前置
 #### 接引腳
 > ![.](/images/btn_1.jpg "按鈕引腳")  
-> **但因為我們的pin有接其他東西，所以這裡接到Raspberry上的pin要改一下**
-> 藍色線接到 Board pin 11
-> 黑色線接到 Board pin 9
-> 紅色線可以直接接麵包版的正極
+> **但因為我們的pin有接其他東西，所以這裡接到Raspberry上的pin要改一下** 
+> * 藍色線接到 Board pin 11
+> * 黑色線接到 Board pin 9
+> * 紅色線可以直接接麵包版的正極
   
 #### 測試程式碼
 跑跑看 test_btn.py，按一次按鈕console就會出現一次pressed  
