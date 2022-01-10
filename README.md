@@ -94,6 +94,18 @@ os.system('mpg321 /home/pi/Music/你的檔名 &')
 # 例如：os.system('mpg321 /home/pi/Music/mymusic.mp3 &')
 ```
   
+## 按鈕前置
+#### 接引腳
+> ![.](/images/btn_1.jpg "按鈕引腳")  
+> **但因為我們的pin有接其他東西，所以這裡接到Raspberry上的pin要改一下**
+> 藍色線接到 Board pin 11
+> 黑色線接到 Board pin 9
+> 紅色線可以直接接麵包版的正極
+  
+#### 測試程式碼
+跑跑看 test_btn.py，按一次按鈕console就會出現一次pressed  
+按鈕前置參考自：https://sites.google.com/site/raspberrypidiy/basic/gpioinput
+  
 ## Line bot前置
 #### 一、 創建LineBot帳號，請見此[參考頁面](https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/)建立 LINE messaging API的部分進行操作  
   
@@ -134,5 +146,5 @@ channel_access_token的資料在line developers的Messaging API頁
 >![.](/images/linebot_3.jpg "像這樣")  
 > 1. 到Messaging API settings頁
 > 2. 找到LINE Official Account features中的Auto-reply messages，點下Edit後跳轉畫面
-> 3. 把進階設定中的自動回覆訊息停用。
+> 3. 把進階設定中的自動回覆訊息停用。  
 Line bot前置參考自：https://blog.cavedu.com/2021/12/06/rasbperry-pi-line-messaging-api/
